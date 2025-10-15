@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         body {
+      background-color: #343541;
+      color: #ececf1;
+      font-family: "Inter", sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #10a37f;
+    }
+
+    .main {
+      width: 100%;
+      max-width: 600px;
+      background: #40414f;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+
+    button {
+      background-color: #10a37f;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Linkedin Post Generator</h1>
+        <form id="inputform">
+            <label>Prompt:</label>
+            <input type="text" id="prompt" placeholder="enter your here." required>
+
+            <label>Topic:</label>
+            <input type="text" id="topic" required>
+
+            <label>Tone:</label>
+            <input type="text" id="tone" placeholder="e.g., Professional, Casual, Motivational" required>
+
+            <label>Length:</label>
+            <input type="text" id="length" placeholder="e.g., Short, Medium, Long" required>
+
+            <button type="submit">Generate Post</button>
+        </form>
+
+        <div id="output" class="output"></div>
+    </div>
+</body>
+
+</html>

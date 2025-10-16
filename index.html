@@ -70,4 +70,18 @@
     </div>
 </body>
 
+<script>
+  document.getElementById("inputform").addEventListener("submit" ,async (e) =>{
+    e.preventDefault();
+    const formdata=new FormData(e.target);
+    const response = await fetch("http://127.0.0.1:8000/generate", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      document.getElementById("output").textContent = data.generated_post || "Error generating post";
+  })
+</script>
+
 </html>

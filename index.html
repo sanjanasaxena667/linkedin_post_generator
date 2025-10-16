@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-         body {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LinkedIn Post Generator</title>
+  <style>
+    body {
       background-color: #343541;
       color: #ececf1;
       font-family: "Inter", sans-serif;
@@ -32,56 +31,79 @@
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     }
+
     label {
       display: block;
       margin: 10px 0 5px;
       font-weight: bold;
     }
 
+    input, button {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      font-size: 1em;
+    }
+
     button {
       background-color: #10a37f;
+      color: white;
       cursor: pointer;
       font-weight: bold;
       transition: background 0.2s ease;
     }
-    </style>
+
+    button:hover {
+      background-color: #0d8769;
+    }
+
+    .output {
+      margin-top: 20px;
+      background: #202123;
+      padding: 15px;
+      border-radius: 10px;
+      white-space: pre-wrap;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="main">
-        <h1>Linkedin Post Generator</h1>
-        <form id="inputform">
-            <label>Prompt:</label>
-            <input type="text" id="prompt" placeholder="enter your here." required>
+  <div class="main">
+    <h1>LinkedIn Post Generator</h1>
+    <form id="inputform">
+      <label>Prompt:</label>
+      <input type="text" name="prompt" placeholder="Enter your custom prompt..." required>
 
-            <label>Topic:</label>
-            <input type="text" id="topic" required>
+      <label>Topic:</label>
+      <input type="text" name="topic" placeholder="Enter your topic..." required>
 
-            <label>Tone:</label>
-            <input type="text" id="tone" placeholder="e.g., Professional, Casual, Motivational" required>
+      <label>Tone:</label>
+      <input type="text" name="tone" placeholder="e.g., Professional, Casual, Motivational" required>
 
-            <label>Length:</label>
-            <input type="text" id="length" placeholder="e.g., Short, Medium, Long" required>
+      <label>Length:</label>
+      <input type="text" name="length" placeholder="e.g., Short, Medium, Long" required>
 
-            <button type="submit">Generate Post</button>
-        </form>
+      <button type="submit">Generate Post</button>
+    </form>
 
-        <div id="output" class="output"></div>
-    </div>
-</body>
+    <div id="output" class="output"></div>
+  </div>
 
-<script>
-  document.getElementById("inputform").addEventListener("submit" ,async (e) =>{
-    e.preventDefault();
-    const formdata=new FormData(e.target);
-    const response = await fetch("http://127.0.0.1:8000/generate", {
+  <script>
+    document.getElementById("inputform").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      const response = await fetch("http://127.0.0.1:8000/generate", {
         method: "POST",
         body: formData,
       });
 
       const data = await response.json();
       document.getElementById("output").textContent = data.generated_post || "Error generating post";
-  })
-</script>
-
+    });
+  </script>
+</body>
 </html>
